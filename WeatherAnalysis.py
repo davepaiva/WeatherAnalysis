@@ -5,6 +5,7 @@ import datetime as dt
 import pandas as pd
 from decimal import Decimal
 
+df1=pd.DataFrame()
 df2=pd.DataFrame()
 
 
@@ -41,8 +42,14 @@ for i in range(1,365):
    response= urllib.request.urlopen(darksky_url)
    content= response.read()
    data= json.loads(content.decode('utf8'))
-   df1=pd.DataFrame(data["daily"]["data"])
-   pd.concat([df2,df1])
+   df1=data['daily']['data']
+   df2=df2.append(df1)
+   unixtime=int(unixtime)
+   unixtime=unixtime+86400
+   unixtime=str(unixtime)
+   
+df2.set_index('time')
+
 
        
         
