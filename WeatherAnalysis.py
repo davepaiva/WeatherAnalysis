@@ -64,6 +64,13 @@ df2.temperatureLowTime=pd.to_datetime(df2.temperatureLowTime, unit='s')
 
 df2=df2.set_index('time', inplace=True) #sets the index of the data frame as the date of the day of reading.
 
+temp=pd.DataFrame()  ##Make seperate DF of only relevant Temperatures
+temp= df3[['apparentTemperatureHigh', 'apparentTemperatureLow', 'temperatureHigh', 'temperatureLow',]] 
+##drop all null N/A values and plot:
+temp.dropna()
+temp.plot()
+plt.show()
+
 
 
        
